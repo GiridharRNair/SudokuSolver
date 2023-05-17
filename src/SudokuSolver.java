@@ -1,7 +1,7 @@
 /**
  * This class represents a Sudoku solver.
  * Name: Giridhar Nair
- * Comments produced by https://syntaxwarrior30.github.io/Documentation-Wizard/
+ * Comments produced by <a href="https://syntaxwarrior30.github.io/Documentation-Wizard/">...</a>
  */
 public class SudokuSolver {
     private int[][] board; // the Sudoku puzzle to solve
@@ -20,7 +20,7 @@ public class SudokuSolver {
      */
     public boolean solve() {
         long start = System.currentTimeMillis();
-        long end = start + 1 * 250;
+        long end = start + 250;
         int row = -1;
         int col = -1;
         boolean isEmpty = true;
@@ -81,16 +81,6 @@ public class SudokuSolver {
         return true;
     }
 
-    /**
-     * Gets the value of the cell at the given coordinates.
-     * @param x the row of the cell
-     * @param y the column of the cell
-     * @return the integer value of the cell
-     */
-    public int getValue(int x, int y) {
-        return board[x][y];
-    }
-    
     /**
      * Gets the completed state of the Sudoku Board.
      * @return int matrix of the Sudoku Board

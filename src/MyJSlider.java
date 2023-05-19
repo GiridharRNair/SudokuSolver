@@ -1,6 +1,7 @@
 /**
  * This class represents the custom JSlider to set the tool tip
  * text to the current value of the slider.
+ * Name: Giridhar Nair
  */
 
 import javax.swing.*;

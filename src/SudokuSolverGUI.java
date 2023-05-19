@@ -1,10 +1,16 @@
 import javax.swing.*;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.DocumentFilter;
 import java.awt.*;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+
 
 public class SudokuSolverGUI extends JFrame {
 
-    public final JTextField[][] textField; // TextFields to hold user input of the Sudoku puzzle
+    public final IntegerInputField[][] textField; // TextFields to hold user input of the Sudoku puzzle
     public GridPanel sudokuGrid; // Custom grid panel for Sudoku puzzle
     public boolean isDone; // Boolean value to store if done or not
     public boolean terminate; // Boolean value to store if user wants to terminate solve
@@ -13,14 +19,14 @@ public class SudokuSolverGUI extends JFrame {
     public SudokuSolverGUI() {
         isDone = true;
 
-        textField = new JTextField[9][9];
+        textField = new IntegerInputField[9][9];
         sudokuGrid = new GridPanel(new GridLayout(9, 9, 0, 0));
 
         for (int y = 0; y < 9; y++) {
             for (int x = 0; x < 9; x++) {
-                textField[x][y] = new JTextField();
+                textField[x][y] = new IntegerInputField();
                 textField[x][y].setPreferredSize(new Dimension(40, 40));
-                this.setFont(new Font("Arial", Font.PLAIN, 45));
+                this.setFont(new Font("Arial", Font.PLAIN, 100));
                 textField[x][y].setHorizontalAlignment(JTextField.CENTER);
                 sudokuGrid.add(textField[x][y]);
             }
@@ -46,6 +52,16 @@ public class SudokuSolverGUI extends JFrame {
         solveThread.start();
     }
 
+    public void terminateSolve() {
+        terminate = true;
+        if (solveThread != null) {
+            solveThread.interrupt();
+            SudokuSolverTester.jSlider.setEnabled(true);
+            SudokuSolverTester.solveButton.setEnabled(true);
+            SudokuSolverTester.genRandPuzzle.setEnabled(true);
+        }
+    }
+
     private boolean solveHelper() {
         int row = -1;
         int col = -1;
@@ -68,11 +84,20 @@ public class SudokuSolverGUI extends JFrame {
 
         // If all cells are filled, the Sudoku puzzle is solved
         if (isFilled) {
+            SudokuSolverTester.clearStopButton.setText("<html><center>Clear</html></center>");
+            SudokuSolverTester.jSlider.setEnabled(true);
+            SudokuSolverTester.solveButton.setEnabled(true);
+            SudokuSolverTester.genRandPuzzle.setEnabled(true);
             return true;
         }
 
         for (int num = 1; num <= 9; num++) {
-            sleep();
+            if (terminate) {
+                // Thread was interrupted, terminate solving
+                return false;
+            } else {
+                sleep();
+            }
 
             if (isValid(row, col, num)) {
                 textField[row][col].setForeground(Color.GREEN);
@@ -121,9 +146,16 @@ public class SudokuSolverGUI extends JFrame {
 
     private void sleep() {
         try {
-            TimeUnit.MILLISECONDS.sleep(SudokuSolverTester.jSlider.getMaximum() - ((long) SudokuSolverTester.jSlider.getValue() * (SudokuSolverTester.jSlider.getMaximum() - SudokuSolverTester.jSlider.getMinimum()) / 100));
+            long sleepTime = SudokuSolverTester.jSlider.getMaximum() - ((long) SudokuSolverTester.jSlider.getValue() * (SudokuSolverTester.jSlider.getMaximum() - SudokuSolverTester.jSlider.getMinimum()) / 100);
+            while (sleepTime > 0) {
+                long startTime = System.currentTimeMillis();
+                TimeUnit.MILLISECONDS.sleep(sleepTime);
+                long elapsedTime = System.currentTimeMillis() - startTime;
+                sleepTime -= elapsedTime;
+            }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            // Restore the interrupted status
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -132,6 +164,21 @@ public class SudokuSolverGUI extends JFrame {
             for (JTextField jTextField : jTextFields) {
                 jTextField.setEditable(false);
                 jTextField.setToolTipText("Cannot Edit During Solve");
+            }
+        }
+    }
+
+    public void generateBoard() {
+        this.clearGrid();
+        SudokuGenerator randomBoard = new SudokuGenerator(9, (int)(Math.random() * 76) + 5);
+        randomBoard.generate();
+        for (int r = 0; r < 9; r++) {
+            for (int c = 0; c < 9; c++) {
+                if(randomBoard.grid[r][c] != 0) {
+                    textField[r][c].setText(String.valueOf(randomBoard.grid[r][c]));
+                } else {
+                    textField[r][c].setText("");
+                }
             }
         }
     }

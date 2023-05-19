@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a8c32ca-272b-4b7a-94aa-3145f004f617" name="Changes" comment="Decentralized code">
-      <change afterPath="$PROJECT_DIR$/src/MyJSlider.java" afterDir="false" />
+    <list default="true" id="6a8c32ca-272b-4b7a-94aa-3145f004f617" name="Changes" comment="Added Custom JSlider, minor changes">
+      <change afterPath="$PROJECT_DIR$/src/IntegerInputField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/KeyPressListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SudokuGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ButtonHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ButtonHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GridPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GridPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SudokuSolver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyJSlider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyJSlider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SudokuSolverGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SudokuSolverGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SudokuSolverTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SudokuSolverTester.java" afterDir="false" />
     </list>
@@ -70,7 +71,7 @@
       <workItem from="1684259359658" duration="1353000" />
       <workItem from="1684339592386" duration="4307000" />
       <workItem from="1684347914970" duration="12362000" />
-      <workItem from="1684441284120" duration="5278000" />
+      <workItem from="1684441284120" duration="13211000" />
     </task>
     <task id="LOCAL-00001" summary="Inital Commit">
       <created>1684339603422</created>
@@ -86,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684348964993</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added Custom JSlider, minor changes">
+      <created>1684507239485</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1684507239485</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,7 +103,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inital Commit" />
     <MESSAGE value="Decentralized code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Decentralized code" />
+    <MESSAGE value="Added Custom JSlider, minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Custom JSlider, minor changes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SudokuSolver$SudokuSolverTester.ic" NAME="SudokuSolverTester Coverage Results" MODIFIED="1684348178214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -13,7 +13,7 @@ public class SudokuSolverTester {
 
     static MyJSlider jSlider;
     static JButton solveButton;
-    static JButton clearButton;
+    static JButton clearStopButton;
     static JButton genRandPuzzle;
     static JLabel status;
 
@@ -29,8 +29,16 @@ public class SudokuSolverTester {
 
         SudokuSolverGUI sudokuSolverGUI  = new SudokuSolverGUI();
 
+        try {
+            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarculaLaf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         JPanel userInputPanel = new JPanel();
         userInputPanel.setLayout(new BoxLayout(userInputPanel, BoxLayout.Y_AXIS));
+        userInputPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        userInputPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         JFrame frame = new JFrame("Sudoku Solver");
 
@@ -40,7 +48,8 @@ public class SudokuSolverTester {
             Taskbar.getTaskbar().setIconImage(image);
         }
 
-        status = new JLabel("<html><center>Sudoku Solver</html></center>");
+        status = new JLabel("<html><center>Set Iteration Delay</html></center>");
+        status.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         jSlider = new MyJSlider(0, 100);
         Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
@@ -49,14 +58,17 @@ public class SudokuSolverTester {
         jSlider.setLabelTable( labelTable );
         jSlider.setPaintLabels(true);
 
-        solveButton = new JButton("<html><center>Solve</html></center>");
+        solveButton = new JButton("<html><center>Solve</center></html>");
         solveButton.addActionListener(new ButtonHandler(sudokuSolverGUI));
+        solveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        clearButton = new JButton("<html><center>Clear</html></center>");
-        clearButton.addActionListener(new ButtonHandler(sudokuSolverGUI));
+        clearStopButton = new JButton("<html><center>Clear</center></html>");
+        clearStopButton.addActionListener(new ButtonHandler(sudokuSolverGUI));
+        clearStopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        genRandPuzzle = new JButton("<html><center>Generate Random Puzzle</html></center>");
+        genRandPuzzle = new JButton("<html><center>Generate Random Puzzle</center></html>");
         genRandPuzzle.addActionListener(new ButtonHandler(sudokuSolverGUI));
+        genRandPuzzle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         frame.setIconImage(image);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,7 +82,7 @@ public class SudokuSolverTester {
         userInputPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         userInputPanel.add(solveButton);
         userInputPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        userInputPanel.add(clearButton);
+        userInputPanel.add(clearStopButton);
         userInputPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         userInputPanel.add(genRandPuzzle);
 

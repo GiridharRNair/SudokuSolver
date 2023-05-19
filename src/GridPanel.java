@@ -1,19 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-import com.formdev.flatlaf.FlatDarkLaf;
 
 /**
  * Custom panel class for the Sudoku grid. Paints the lines on the grid.
  */
 public class GridPanel extends JPanel {
-    static {
-        // Set the FlatLaf Dark theme
-        try {
-            UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
 
     GridPanel(GridLayout layout) {
         super(layout);

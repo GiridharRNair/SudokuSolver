@@ -1,29 +1,27 @@
 /**
- * This class tests the Sudoku solver.
+ * This class tests the SudokuSolverGUI class.
  * Name: Giridhar Nair
- * Comments produced by https://syntaxwarrior30.github.io/Documentation-Wizard/
  */
 
 import com.sun.tools.javac.Main;
-
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
+import java.util.Hashtable;
 
 // Class that tests the SudokuSolverGUI class
 public class SudokuSolverTester {
 
-    static JFrame frame;
+    static MyJSlider jSlider;
     static JButton solveButton;
     static JButton clearButton;
+    static JButton genRandPuzzle;
     static JLabel status;
 
 
-    public static void main(String[] args) throws UnsupportedAudioFileException, IOException {
+    public static void main(String[] args) {
         try {
             // Set the look and feel of the user interface
-            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             // Print the stack trace of the exception if the look and feel could not be set
             e.printStackTrace();
@@ -31,8 +29,10 @@ public class SudokuSolverTester {
 
         SudokuSolverGUI sudokuSolverGUI  = new SudokuSolverGUI();
 
+        JPanel userInputPanel = new JPanel();
+        userInputPanel.setLayout(new BoxLayout(userInputPanel, BoxLayout.Y_AXIS));
 
-        frame = new JFrame("Sudoku Solver");
+        JFrame frame = new JFrame("Sudoku Solver");
 
         // Set the icon image for the frame
         final Image image = Toolkit.getDefaultToolkit().getImage(Main.class.getClassLoader().getResource("SudokuSolverIcon.jpeg"));
@@ -40,25 +40,43 @@ public class SudokuSolverTester {
             Taskbar.getTaskbar().setIconImage(image);
         }
 
-        solveButton = new JButton("Solve");
-        clearButton = new JButton("Clear");
-        status = new JLabel("Input Numbers");
+        status = new JLabel("<html><center>Sudoku Solver</html></center>");
 
+        jSlider = new MyJSlider(0, 100);
+        Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
+        labelTable.put(0, new JLabel("Slow"));
+        labelTable.put(100, new JLabel("Fast"));
+        jSlider.setLabelTable( labelTable );
+        jSlider.setPaintLabels(true);
+
+        solveButton = new JButton("<html><center>Solve</html></center>");
         solveButton.addActionListener(new ButtonHandler(sudokuSolverGUI));
-        clearButton.addActionListener(new ButtonHandler(sudokuSolverGUI));
-        clearButton.setVisible(false);
 
-        frame.setIconImage(image);
+        clearButton = new JButton("<html><center>Clear</html></center>");
+        clearButton.addActionListener(new ButtonHandler(sudokuSolverGUI));
+
+        genRandPuzzle = new JButton("<html><center>Generate Random Puzzle</html></center>");
+        genRandPuzzle.addActionListener(new ButtonHandler(sudokuSolverGUI));
+
         frame.setIconImage(image);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(250, 305);
         frame.setLayout(new FlowLayout());
         frame.setResizable(false);
-
         frame.add(sudokuSolverGUI.sudokuGrid);
-        frame.add(solveButton);
-        frame.add(clearButton);
-        frame.add(status);
+
+        userInputPanel.add(status);
+        userInputPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        userInputPanel.add(jSlider);
+        userInputPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        userInputPanel.add(solveButton);
+        userInputPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        userInputPanel.add(clearButton);
+        userInputPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        userInputPanel.add(genRandPuzzle);
+
+        frame.add(userInputPanel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }

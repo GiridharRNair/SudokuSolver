@@ -7,7 +7,7 @@ public class IntegerInputField extends JTextField {
         setDocument(new IntegerDocument());
     }
 
-    private class IntegerDocument extends PlainDocument {
+    private static class IntegerDocument extends PlainDocument {
         @Override
         public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
             if (str == null) {

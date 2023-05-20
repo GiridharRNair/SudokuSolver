@@ -19,12 +19,7 @@ public class ButtonHandler implements ActionListener {
     public void actionPerformed(ActionEvent e)
     {
         if (e.getSource() == SudokuSolverTester.solveButton) {
-            sudokuSolverGUI.disableBoard();
             sudokuSolverGUI.solve();
-            SudokuSolverTester.clearStopButton.setText("<html><center>Stop</html></center>");
-            SudokuSolverTester.jSlider.setEnabled(false);
-            SudokuSolverTester.solveButton.setEnabled(false);
-            SudokuSolverTester.genRandPuzzle.setEnabled(false);
         }
         if (e.getSource() == SudokuSolverTester.clearStopButton && Objects.equals(SudokuSolverTester.clearStopButton.getText(), "<html><center>Stop</html></center>")) {
             sudokuSolverGUI.terminateSolve();

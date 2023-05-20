@@ -16,6 +16,7 @@ public class SudokuSolverTester {
     static JButton clearStopButton;
     static JButton genRandPuzzle;
     static JLabel status;
+    static JFrame frame;
 
 
     public static void main(String[] args) {
@@ -40,7 +41,7 @@ public class SudokuSolverTester {
         userInputPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         userInputPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-        JFrame frame = new JFrame("Sudoku Solver");
+        frame = new JFrame("Sudoku Solver");
 
         // Set the icon image for the frame
         final Image image = Toolkit.getDefaultToolkit().getImage(Main.class.getClassLoader().getResource("SudokuSolverIcon.jpeg"));
@@ -48,7 +49,7 @@ public class SudokuSolverTester {
             Taskbar.getTaskbar().setIconImage(image);
         }
 
-        status = new JLabel("<html><center>Set Iteration Delay</html></center>");
+        status = new JLabel("<html><center>Set Iteration Speed</html></center>");
         status.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         jSlider = new MyJSlider(0, 100);

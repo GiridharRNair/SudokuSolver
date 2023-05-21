@@ -1,6 +1,8 @@
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -21,11 +23,28 @@ public class SudokuSolverGUI extends JFrame {
 
         for (int r = 0; r < 9; r++) {
             for (int c = 0; c < 9; c++) {
-                textField[c][r] = new IntegerInputField();
-                textField[c][r].setPreferredSize(new Dimension(40, 40));
+                textField[r][c] = new IntegerInputField();
+
+                int finalR = r;
+                int finalC = c;
+                textField[r][c].addFocusListener(new FocusListener() {
+                    @Override
+                    public void focusGained(FocusEvent e) {
+                        if(textField[finalR][finalC].isEditable()) {
+                            textField[finalR][finalC].setForeground(Color.BLACK);
+                        }
+                    }
+
+                    @Override
+                    public void focusLost(FocusEvent e) {
+
+                    }
+                });
+
+                textField[r][c].setPreferredSize(new Dimension(40, 40));
                 this.setFont(new Font("Arial", Font.PLAIN, 100));
-                textField[c][r].setHorizontalAlignment(JTextField.CENTER);
-                sudokuGrid.add(textField[c][r]);
+                textField[r][c].setHorizontalAlignment(JTextField.CENTER);
+                sudokuGrid.add(textField[r][c]);
             }
         }
 
@@ -256,12 +275,13 @@ public class SudokuSolverGUI extends JFrame {
         return "";
     }
 
-    private static boolean isValidRow(int[][] board, int row) {
+    private boolean isValidRow(int[][] board, int row) {
         boolean[] used = new boolean[9];
         for (int col = 0; col < 9; col++) {
             int value = board[row][col];
             if (value != 0) {
                 if (used[value - 1]) {
+                    errorNumbersRow(row, value);
                     return false; // Duplicate value found
                 }
                 used[value - 1] = true;
@@ -270,12 +290,13 @@ public class SudokuSolverGUI extends JFrame {
         return true;
     }
 
-    private static boolean isValidColumn(int[][] board, int col) {
+    private boolean isValidColumn(int[][] board, int col) {
         boolean[] used = new boolean[9];
         for (int row = 0; row < 9; row++) {
             int value = board[row][col];
             if (value != 0) {
                 if (used[value - 1]) {
+                    errorNumbersCol(col, value);
                     return false; // Duplicate value found
                 }
                 used[value - 1] = true;
@@ -291,6 +312,9 @@ public class SudokuSolverGUI extends JFrame {
                 int value = board[row][col];
                 if (value != 0) {
                     if (used[value - 1]) {
+
+
+
                         return false; // Duplicate value found
                     }
                     used[value - 1] = true;
@@ -300,5 +324,25 @@ public class SudokuSolverGUI extends JFrame {
         return true;
     }
 
+    private void errorNumbersRow(int row, int value) {
+        for(int col = 0; col < textField.length; col++) {
+            if(!Objects.equals(textField[row][col].getText(), "")) {
+                if (Integer.parseInt(textField[row][col].getText()) == value) {
+                    textField[row][col].setForeground(Color.RED);
+                    textField[row][col].setText(Integer.toString(value));
+                }
+            }
+        }
+    }
 
+    private void errorNumbersCol(int col, int value) {
+        for(int row = 0; row < textField.length; row++) {
+            if(!Objects.equals(textField[row][col].getText(), "")) {
+                if (Integer.parseInt(textField[row][col].getText()) == value) {
+                    textField[row][col].setForeground(Color.RED);
+                    textField[row][col].setText(Integer.toString(value));
+                }
+            }
+        }
+    }
 }

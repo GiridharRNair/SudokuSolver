@@ -5,6 +5,7 @@
 
 import com.sun.tools.javac.Main;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.Hashtable;
 
@@ -15,7 +16,7 @@ public class SudokuSolverTester {
     static JButton solveButton;
     static JButton clearStopButton;
     static JButton genRandPuzzle;
-    static JLabel status;
+    static JLabel jSliderTitle;
     static JFrame frame;
 
 
@@ -37,6 +38,7 @@ public class SudokuSolverTester {
         }
 
         JPanel userInputPanel = new JPanel();
+        userInputPanel.setBorder(new EmptyBorder(0, 10, 0, 10));
         userInputPanel.setLayout(new BoxLayout(userInputPanel, BoxLayout.Y_AXIS));
         userInputPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         userInputPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -49,8 +51,8 @@ public class SudokuSolverTester {
             Taskbar.getTaskbar().setIconImage(image);
         }
 
-        status = new JLabel("<html><center>Set Iteration Speed</html></center>");
-        status.setAlignmentX(Component.CENTER_ALIGNMENT);
+        jSliderTitle = new JLabel("<html><center>Set Iteration Speed</html></center>", JLabel.CENTER);
+        jSliderTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         jSlider = new MyJSlider(0, 100);
         Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
@@ -77,7 +79,7 @@ public class SudokuSolverTester {
         frame.setResizable(false);
         frame.add(sudokuSolverGUI.sudokuGrid);
 
-        userInputPanel.add(status);
+        userInputPanel.add(jSliderTitle);
         userInputPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         userInputPanel.add(jSlider);
         userInputPanel.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -88,6 +90,7 @@ public class SudokuSolverTester {
         userInputPanel.add(genRandPuzzle);
 
         frame.add(userInputPanel);
+        frame.add(Box.createVerticalGlue());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

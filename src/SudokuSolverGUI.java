@@ -46,7 +46,7 @@ public class SudokuSolverGUI extends JFrame {
     public void solve() {
         terminate = false;
 
-        if (this.isValidSudoku()) {
+        if (Objects.equals(this.isValidSudoku(), "")) {
             this.disableBoard();
             SudokuSolverTester.clearStopButton.setText("<html><center>Stop</html></center>");
             SudokuSolverTester.jSlider.setEnabled(false);
@@ -61,7 +61,10 @@ public class SudokuSolverGUI extends JFrame {
                 throw new RuntimeException(e);
             }
 
-            JOptionPane.showMessageDialog(SudokuSolverTester.frame, "The Sudoku puzzle inputted is invalid");
+            JOptionPane.showMessageDialog(SudokuSolverTester.frame,
+                    this.isValidSudoku(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -115,7 +118,10 @@ public class SudokuSolverGUI extends JFrame {
             SudokuSolverTester.jSlider.setEnabled(true);
             SudokuSolverTester.solveButton.setEnabled(true);
             SudokuSolverTester.genRandPuzzle.setEnabled(true);
-            JOptionPane.showMessageDialog(SudokuSolverTester.frame, "The Sudoku puzzle was successful to solve");
+            JOptionPane.showMessageDialog(SudokuSolverTester.frame,
+                    "Congratulations! Sudoku Solved",
+                    "Success",
+                    JOptionPane.PLAIN_MESSAGE);
             return true;
         }
 
@@ -128,7 +134,7 @@ public class SudokuSolverGUI extends JFrame {
             }
 
             if (isValid(row, col, num)) {
-                textField[row][col].setForeground(Color.GREEN);
+                textField[row][col].setForeground(Color.blue);
                 textField[row][col].setText(String.valueOf(num));
 
                 if (solveHelper()) {
@@ -211,7 +217,7 @@ public class SudokuSolverGUI extends JFrame {
         }
     }
 
-    public boolean isValidSudoku() {
+    public String isValidSudoku() {
         // Convert JTextFields to int[][] board
         int[][] board = new int[textField.length][textField.length];
         for (int r = 0; r < textField.length; r++) {
@@ -227,14 +233,14 @@ public class SudokuSolverGUI extends JFrame {
         // Check rows
         for (int row = 0; row < 9; row++) {
             if (!isValidRow(board, row)) {
-                return false;
+                return "There are duplicate numbers on the same column";
             }
         }
 
         // Check columns
         for (int col = 0; col < 9; col++) {
             if (!isValidColumn(board, col)) {
-                return false;
+                return "There are duplicate numbers on the same row";
             }
         }
 
@@ -242,12 +248,12 @@ public class SudokuSolverGUI extends JFrame {
         for (int row = 0; row < 9; row += 3) {
             for (int col = 0; col < 9; col += 3) {
                 if (!isValidSquare(board, row, col)) {
-                    return false;
+                    return "There are duplicate numbers in the same subgrid";
                 }
             }
         }
 
-        return true;
+        return "";
     }
 
     private static boolean isValidRow(int[][] board, int row) {

@@ -55,7 +55,7 @@ public class SoundEffect {
             clip.open(audio);
             FloatControl gainControl =
                     (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-15.0f);
+            gainControl.setValue(-8.0f);
             clip.start();
         } else {
             clip.open(audio);

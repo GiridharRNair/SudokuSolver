@@ -27,7 +27,9 @@ This is a Sudoku solver implemented in Java using Java Swing for the graphical u
 
 1. Download SudokuSolver.jar from this repository's releases. <br/>
 
-   <a href="https://github.com/SyntaxWarrior30/SudokuSolver/releases/tag/v1.0.0"><img src="Public/RepoReleases.png" alt="Screenshot"><a/>
+<a href="https://github.com/SyntaxWarrior30/SudokuSolver/releases/tag/v1.0.0">
+    <img src="Public/RepoReleases.png" alt="Screenshot" width="500" height="110">
+</a>
 
 2. In the terminal, enter the directory where the SudokuSolver.jar is downloaded. <br/>
    For example, all my downloaded files are inside the downloads folder, so I would enter the downloads directory.

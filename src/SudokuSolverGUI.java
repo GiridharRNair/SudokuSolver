@@ -307,12 +307,12 @@ public class SudokuSolverGUI extends JFrame {
 
     private boolean isValidSquare(int[][] board, int startRow, int startCol) {
         boolean[] used = new boolean[9];
-        for (int row = startRow; row < startRow + 3; row++) {
-            for (int col = startCol; col < startCol + 3; col++) {
+        for (int row = startRow; row < (startRow + 3); row++) {
+            for (int col = startCol; col < (startCol + 3); col++) {
                 int value = board[row][col];
                 if (value != 0) {
                     if (used[value - 1]) {
-                        errorNumbersSubGrid(value, row, col);
+                        errorNumbersSubGrid(board, value, startRow, startCol);
                         return false; // Duplicate value found
                     }
                     used[value - 1] = true;
@@ -344,18 +344,21 @@ public class SudokuSolverGUI extends JFrame {
         }
     }
 
-    private void errorNumbersSubGrid(int value, int startRow, int startCol) {
-        for (int row = startRow; row < startRow + 3; row++) {
-            for (int col = startCol; col < startCol + 3; col++) {
-                if(!Objects.equals(textField[row - 1][col - 1].getText(), "")) {
-                    if (Integer.parseInt(textField[row - 1][col - 1].getText()) == value) {
-                        textField[row - 1][col - 1].setForeground(Color.RED);
-                        textField[row - 1][col - 1].setText(Integer.toString(value));
+    private void errorNumbersSubGrid(int[][] board, int value, int startRow, int startCol) {
+        for (int row = startRow; row < (startRow + 3); row++) {
+            for (int col = startCol; col < (startCol + 3); col++) {
+                if (board[row][col] != 0) {
+                    int currentValue = board[row][col];
+                    if (currentValue == value) {
+                        board[row][col] = value;
+                        textField[row][col].setForeground(Color.RED);
                     }
                 }
             }
         }
     }
+
+
 
     public void changeForegroundBlack() {
         for (int r = 0; r < 9; r++) {

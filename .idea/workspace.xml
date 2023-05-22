@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a8c32ca-272b-4b7a-94aa-3145f004f617" name="Changes" comment="Fixed illegal numbers indicator">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SudokuSolverGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SudokuSolverGUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/ErrorSoundEffect.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/SuccessSoundEffect.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Public/ErrorSound.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Public/FinishedSound.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SoundEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoundEffect.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/giridharnair/IdeaProjects/SudokuSolver",
+    "last_opened_file_path": "/Users/giridharnair/IdeaProjects/SudokuSolver/Public",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -83,7 +86,7 @@
       <workItem from="1684339592386" duration="4307000" />
       <workItem from="1684347914970" duration="12362000" />
       <workItem from="1684441284120" duration="21292000" />
-      <workItem from="1684598639524" duration="10462000" />
+      <workItem from="1684598639524" duration="11245000" />
     </task>
     <task id="LOCAL-00001" summary="Inital Commit">
       <created>1684339603422</created>
@@ -141,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684719776612</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed illegal numbers indicator">
+      <created>1684720709991</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1684720709991</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

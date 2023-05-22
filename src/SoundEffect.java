@@ -17,8 +17,8 @@ public class SoundEffect {
      * variables by reading in audio files from the Public folder.
      */
     public SoundEffect() throws UnsupportedAudioFileException, IOException {
-        errorSound = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource("ErrorSound.wav")));
-        successSound = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource("FinishedSound.wav")));
+        errorSound = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource("ErrorSoundEffect.wav")));
+        successSound = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource("SuccessSoundEffect.wav")));
     }
 
     /**

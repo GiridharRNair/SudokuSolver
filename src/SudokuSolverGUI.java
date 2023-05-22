@@ -31,7 +31,7 @@ public class SudokuSolverGUI extends JFrame {
                     @Override
                     public void focusGained(FocusEvent e) {
                         if(textField[finalR][finalC].isEditable()) {
-                            textField[finalR][finalC].setForeground(Color.BLACK);
+                            changeForegroundBlack();
                         }
                     }
 
@@ -252,14 +252,14 @@ public class SudokuSolverGUI extends JFrame {
         // Check rows
         for (int row = 0; row < 9; row++) {
             if (!isValidRow(board, row)) {
-                return "There are duplicate numbers on the same column";
+                return "There are duplicate numbers on the same row";
             }
         }
 
         // Check columns
         for (int col = 0; col < 9; col++) {
             if (!isValidColumn(board, col)) {
-                return "There are duplicate numbers on the same row";
+                return "There are duplicate numbers on the same column";
             }
         }
 
@@ -305,16 +305,14 @@ public class SudokuSolverGUI extends JFrame {
         return true;
     }
 
-    private static boolean isValidSquare(int[][] board, int startRow, int startCol) {
+    private boolean isValidSquare(int[][] board, int startRow, int startCol) {
         boolean[] used = new boolean[9];
         for (int row = startRow; row < startRow + 3; row++) {
             for (int col = startCol; col < startCol + 3; col++) {
                 int value = board[row][col];
                 if (value != 0) {
                     if (used[value - 1]) {
-
-
-
+                        errorNumbersSubGrid(value, row, col);
                         return false; // Duplicate value found
                     }
                     used[value - 1] = true;
@@ -342,6 +340,27 @@ public class SudokuSolverGUI extends JFrame {
                     textField[row][col].setForeground(Color.RED);
                     textField[row][col].setText(Integer.toString(value));
                 }
+            }
+        }
+    }
+
+    private void errorNumbersSubGrid(int value, int startRow, int startCol) {
+        for (int row = startRow; row < startRow + 3; row++) {
+            for (int col = startCol; col < startCol + 3; col++) {
+                if(!Objects.equals(textField[row - 1][col - 1].getText(), "")) {
+                    if (Integer.parseInt(textField[row - 1][col - 1].getText()) == value) {
+                        textField[row - 1][col - 1].setForeground(Color.RED);
+                        textField[row - 1][col - 1].setText(Integer.toString(value));
+                    }
+                }
+            }
+        }
+    }
+
+    public void changeForegroundBlack() {
+        for (int r = 0; r < 9; r++) {
+            for (int c = 0; c < 9; c++) {
+                textField[r][c].setForeground(Color.BLACK);
             }
         }
     }

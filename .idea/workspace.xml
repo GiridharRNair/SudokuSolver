@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a8c32ca-272b-4b7a-94aa-3145f004f617" name="Changes" comment="Centered text, added better messages">
+    <list default="true" id="6a8c32ca-272b-4b7a-94aa-3145f004f617" name="Changes" comment="Changed the num to red when illegal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SudokuSolverGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SudokuSolverGUI.java" afterDir="false" />
     </list>
@@ -57,6 +57,20 @@
       <recent name="$PROJECT_DIR$/Pubic" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="SudokuSolverTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SudokuSolverTester" />
+      <module name="SudokuSolver" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SudokuSolverTester" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -69,7 +83,7 @@
       <workItem from="1684339592386" duration="4307000" />
       <workItem from="1684347914970" duration="12362000" />
       <workItem from="1684441284120" duration="21292000" />
-      <workItem from="1684598639524" duration="6967000" />
+      <workItem from="1684598639524" duration="9618000" />
     </task>
     <task id="LOCAL-00001" summary="Inital Commit">
       <created>1684339603422</created>
@@ -113,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684647484471</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Changed the num to red when illegal">
+      <created>1684703203673</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1684703203673</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +158,8 @@
     <MESSAGE value="Added custom JTextField" />
     <MESSAGE value="Fixed Bugs" />
     <MESSAGE value="Centered text, added better messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Centered text, added better messages" />
+    <MESSAGE value="Changed the num to red when illegal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the num to red when illegal" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SudokuSolver$SudokuSolverTester.ic" NAME="SudokuSolverTester Coverage Results" MODIFIED="1684348178214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
